@@ -1,0 +1,17 @@
+{
+  "name": "Tasbih Pro",
+  "short_name": "Tasbih",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07231c",
+  "theme_color": "#07231c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
