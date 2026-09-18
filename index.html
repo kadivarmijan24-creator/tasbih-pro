@@ -4,14 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Tasbih Pro</title>
-  
-  <!-- PWA Settings -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#07231c">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="apple-touch-icon" href="icon.png">
 
   <style>
     :root {
@@ -33,22 +25,29 @@
     body.theme-forest { --bg-dark: #092612; --panel-tint: #11381b; --surface-dial: #051a0b; --accent-neon: #4ade80; --accent-glow: rgba(74,222,128,0.45); --accent-subtle: rgba(74,222,128,0.15); --text-muted: #82ab8b; }
     body.theme-cyanteal { --bg-dark: #062426; --panel-tint: #0d383b; --surface-dial: #04191a; --accent-neon: #00f5d4; --accent-glow: rgba(0,245,212,0.45); --accent-subtle: rgba(0,245,212,0.15); --text-muted: #76a8a7; }
     body.theme-rosegold { --bg-dark: #28141e; --panel-tint: #3d1e2e; --surface-dial: #1a0b12; --accent-neon: #fb7185; --accent-glow: rgba(251,113,133,0.45); --accent-subtle: rgba(251,113,133,0.15); --text-muted: #be8e9d; }
+    body.theme-midnight { --bg-dark: #0c1524; --panel-tint: #14223b; --surface-dial: #070d17; --accent-neon: #38bdf8; --accent-glow: rgba(56,189,248,0.45); --accent-subtle: rgba(56,189,248,0.15); --text-muted: #839bbd; }
+    body.theme-sunset { --bg-dark: #271408; --panel-tint: #3d200e; --surface-dial: #1a0b04; --accent-neon: #fb923c; --accent-glow: rgba(251,146,60,0.45); --accent-subtle: rgba(251,146,60,0.15); --text-muted: #ba9378; }
+    body.theme-mint { --bg-dark: #052119; --panel-tint: #0c3629; --surface-dial: #031711; --accent-neon: #2dd4bf; --accent-glow: rgba(45,212,191,0.45); --accent-subtle: rgba(45,212,191,0.15); --text-muted: #78a397; }
+    body.theme-coffee { --bg-dark: #261914; --panel-tint: #3b2820; --surface-dial: #170e0a; --accent-neon: #d97706; --accent-glow: rgba(217,119,6,0.45); --accent-subtle: rgba(217,119,6,0.15); --text-muted: #ad9487; }
+    body.theme-crimson { --bg-dark: #260a0a; --panel-tint: #3d1212; --surface-dial: #170505; --accent-neon: #ef4444; --accent-glow: rgba(239,68,68,0.45); --accent-subtle: rgba(239,68,68,0.15); --text-muted: #b87a7a; }
+    body.theme-olive { --bg-dark: #1b210c; --panel-tint: #2c3614; --surface-dial: #111406; --accent-neon: #a3e635; --accent-glow: rgba(163,230,53,0.45); --accent-subtle: rgba(163,230,53,0.15); --text-muted: #9ba880; }
+    body.theme-amethyst { --bg-dark: #210d29; --panel-tint: #361642; --surface-dial: #14071a; --accent-neon: #e879f9; --accent-glow: rgba(232,121,249,0.45); --accent-subtle: rgba(232,121,249,0.15); --text-muted: #b08bbd; }
 
     * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
     body { background-color: #020b08; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
-    .mobile-frame { width: 100%; max-width: 412px; height: 100vh; max-height: 890px; background-color: var(--bg-dark); display: flex; flex-direction: column; justify-content: space-between; padding: 16px 18px 22px 18px; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.9); overflow: hidden; transition: background-color 0.25s ease; cursor: pointer; }
-    .mobile-frame::before { content: ""; position: absolute; inset: 0; opacity: 0.12; pointer-events: none; background-image: radial-gradient(circle at 50% 0%, var(--accent-neon) 1.5px, transparent 2.5px), linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 36px 36px; }
-    .no-screen-tap { cursor: default; }
 
-    .top-bar { display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+    .mobile-frame { width: 100%; max-width: 412px; height: 100vh; max-height: 890px; background-color: var(--bg-dark); display: flex; flex-direction: column; justify-content: space-between; padding: 16px 18px 22px 18px; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.9); overflow: hidden; transition: background-color 0.25s ease; }
+    .mobile-frame::before { content: ""; position: absolute; inset: 0; opacity: 0.12; pointer-events: none; background-image: radial-gradient(circle at 50% 0%, var(--accent-neon) 1.5px, transparent 2.5px), linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 36px 36px; }
+
+    .top-bar { display: flex; align-items: center; justify-content: space-between; z-index: 5; position: relative; }
     .icon-btn { background: none; border: none; color: var(--text-muted); padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
     .icon-btn:active { transform: scale(0.9); color: #ffffff; }
     .stopwatch-pill { background: var(--panel-tint); border-radius: 26px; padding: 6px 16px; display: flex; align-items: center; gap: 14px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); }
     .sw-time { font-family: monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
 
-    .header-content { text-align: center; margin-top: 4px; z-index: 5; }
+    .header-content { text-align: center; margin-top: 4px; z-index: 5; position: relative; }
     .tasbih-heading { font-size: 26px; font-weight: 700; color: #ffffff; }
-    .target-badge { display: inline-block; background: rgba(0,0,0,0.3); padding: 2px 10px; border-radius: 16px; font-size: 11px; color: var(--text-muted); margin-top: 4px; border: 1px solid rgba(255,255,255,0.06); }
+    .target-badge { display: inline-block; background: rgba(0,0,0,0.3); padding: 2px 10px; border-radius: 16px; font-size: 11px; color: var(--text-muted); margin-top: 4px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer; }
     .target-badge strong { color: var(--accent-neon); }
 
     .quick-actions { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 12px; }
@@ -56,20 +55,22 @@
     .tool-btn { color: var(--text-muted); cursor: pointer; background: none; border: none; display: flex; padding: 4px; }
     .tool-btn.active { color: var(--accent-neon); }
 
-    .center-stage { display: flex; align-items: center; justify-content: center; flex: 1; position: relative; z-index: 5; pointer-events: none; }
-    .dial-touch-zone { width: 290px; height: 290px; border-radius: 50%; background: radial-gradient(circle at 45% 45%, var(--panel-tint) 0%, var(--surface-dial) 100%); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 20px 45px rgba(0,0,0,0.75), inset 0 3px 6px rgba(255,255,255,0.08), inset 0 -6px 14px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.06); transition: transform 0.08s ease; }
+    /* Central Tap Area */
+    .center-stage { display: flex; align-items: center; justify-content: center; flex: 1; position: relative; z-index: 5; cursor: pointer; }
+    .dial-touch-zone { width: 290px; height: 290px; border-radius: 50%; background: radial-gradient(circle at 45% 45%, var(--panel-tint) 0%, var(--surface-dial) 100%); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 20px 45px rgba(0,0,0,0.75), inset 0 3px 6px rgba(255,255,255,0.08), inset 0 -6px 14px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.06); transition: transform 0.08s ease; pointer-events: none; }
     .dial-touch-zone.pressed { transform: scale(0.96); }
     .dial-notch { position: absolute; top: 10px; width: 14px; height: 4px; border-radius: 4px; background-color: var(--accent-neon); box-shadow: 0 0 10px var(--accent-neon); }
     .counter-number { font-family: var(--counter-font); font-size: 106px; font-weight: 700; color: transparent; -webkit-text-stroke: 3.5px var(--accent-neon); text-shadow: 0 0 16px var(--accent-glow); line-height: 1; margin-top: 12px; }
     .round-indicator { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
 
-    .bottom-dock { background: var(--panel-tint); border-radius: 36px; padding: 8px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05); z-index: 5; }
+    /* Bottom Dock */
+    .bottom-dock { background: var(--panel-tint); border-radius: 36px; padding: 8px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05); z-index: 10; position: relative; }
     .dock-btn { background: none; border: none; color: var(--text-muted); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; }
     .dock-btn:active { transform: scale(0.9); color: #fff; }
     .dock-btn.plus-primary { background: var(--accent-neon); color: #051612; box-shadow: 0 0 16px var(--accent-glow); }
 
-    .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 30; }
-    .modal-overlay.open { display: flex; }
+    /* MODAL OVERLAYS */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 99999; }
     .modal-card { background: var(--panel-tint); width: 100%; max-width: 325px; border-radius: 22px; padding: 18px 20px 22px 20px; text-align: center; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 45px rgba(0,0,0,0.8); }
     .modal-tabs { display: flex; background: rgba(0,0,0,0.25); border-radius: 12px; padding: 3px; margin-bottom: 16px; }
     .modal-tab-btn { flex: 1; padding: 8px 0; border: none; background: transparent; color: var(--text-muted); font-weight: 700; font-size: 14px; border-radius: 9px; cursor: pointer; }
@@ -86,16 +87,20 @@
     .btn-cancel { background: rgba(255,255,255,0.08); color: #ffffff; }
     .btn-start { background: var(--accent-neon); color: #06231b; }
 
-    .sheet-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); display: none; flex-direction: column; justify-content: flex-end; z-index: 40; }
-    .sheet-overlay.open { display: flex; }
-    .sheet-card { background: var(--panel-tint); border-radius: 26px 26px 0 0; padding: 18px 18px 24px 18px; max-height: 85vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.1); }
+    /* BOTTOM SHEETS */
+    .sheet-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); display: none; flex-direction: column; justify-content: flex-end; z-index: 100000; }
+    .sheet-card { background: var(--panel-tint); border-radius: 26px 26px 0 0; padding: 18px 18px 24px 18px; max-height: 85vh; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 412px; margin: 0 auto; }
     .sheet-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .theme-box { aspect-ratio: 1; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.08); }
+
+    .theme-row-link { background: rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 600; margin-bottom: 16px; cursor: pointer; border: 1px solid rgba(255,255,255,0.08); }
+    .theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-bottom: 20px; }
+    .theme-box { aspect-ratio: 1; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.08); }
     .theme-box-circle { width: 44px; height: 44px; border-radius: 50%; border: 2px solid; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: transparent; -webkit-text-stroke: 1.2px; }
     .theme-box-notch { width: 14px; height: 3px; border-radius: 2px; margin-top: 6px; }
 
-    .preset-item { background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; }
+    .font-option-card { background: rgba(255,255,255,0.06); padding: 14px 16px; border-radius: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 17px; border: 1px solid rgba(255,255,255,0.06); }
+
+    .preset-item { background: rgba(255,255,255,0.05); padding: 12px 14px; border-radius: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; }
     .preset-arabic { font-size: 18px; color: var(--accent-neon); }
 
     svg.icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -103,50 +108,50 @@
 </head>
 <body class="theme-emerald">
 
-  <div class="mobile-frame" id="full-screen-touch-area">
+  <div class="mobile-frame">
     
     <!-- Top Bar -->
-    <div class="top-bar no-screen-tap">
-      <button class="icon-btn" id="btn-edit-title">
+    <div class="top-bar">
+      <button class="icon-btn" onclick="openTitlePrompt()">
         <svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
       </button>
 
       <div class="stopwatch-pill">
-        <button class="icon-btn" id="sw-toggle" style="padding: 0; color: #fff;">
+        <button class="icon-btn" id="sw-toggle" style="padding: 0; color: #fff;" onclick="toggleStopwatch()">
           <svg class="icon" id="sw-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         </button>
         <span class="sw-time" id="sw-display">00:00</span>
-        <button class="icon-btn" id="sw-reset" style="padding: 0; color: #8bb1a6;">
+        <button class="icon-btn" style="padding: 0; color: #8bb1a6;" onclick="resetStopwatch()">
           <svg class="icon" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
         </button>
       </div>
 
-      <button class="icon-btn" id="btn-open-presets">
+      <button class="icon-btn" onclick="openPresetsModal()">
         <svg class="icon" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
       </button>
     </div>
 
-    <!-- Header -->
-    <div class="header-content no-screen-tap">
+    <!-- Header Content -->
+    <div class="header-content">
       <h1 class="tasbih-heading" id="tasbih-title">Tasbih</h1>
-      <div class="target-badge" id="btn-set-target" style="cursor: pointer;">
+      <div class="target-badge" onclick="openTargetPrompt()">
         <span>Target: </span><strong id="target-number">33</strong>
         <span id="target-pct">(0%)</span>
       </div>
 
       <div class="quick-actions">
-        <div class="auto-badge" id="btn-auto-modal">A</div>
-        <button class="tool-btn active" id="btn-sound">
+        <div class="auto-badge" id="btn-auto-badge" onclick="toggleAutoModal()">A</div>
+        <button class="tool-btn active" id="btn-sound" onclick="toggleSound()">
           <svg class="icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
         </button>
-        <button class="tool-btn active" id="btn-vibrate">
+        <button class="tool-btn active" id="btn-vibrate" onclick="toggleVibrate()">
           <svg class="icon" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
         </button>
       </div>
     </div>
 
-    <!-- Center Stage -->
-    <div class="center-stage">
+    <!-- Center Stage (Tap to Count) -->
+    <div class="center-stage" onclick="incrementCount()">
       <div class="dial-touch-zone" id="dial-visual">
         <div class="dial-notch"></div>
         <div class="counter-number" id="counter-val">0</div>
@@ -155,96 +160,147 @@
     </div>
 
     <!-- Bottom Dock -->
-    <div class="bottom-dock no-screen-tap">
-      <button class="dock-btn" id="btn-reset-counter" title="Reset All">
+    <div class="bottom-dock">
+      <button class="dock-btn" onclick="masterReset()" title="Reset All">
         <svg class="icon" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
       </button>
-      <button class="dock-btn" id="btn-minus" title="Minus One">
+      <button class="dock-btn" onclick="decrementCount()" title="Minus One">
         <svg class="icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
-      <button class="dock-btn plus-primary" id="btn-plus" title="Add Count">
+      <button class="dock-btn plus-primary" onclick="incrementCount()" title="Add Count">
         <svg class="icon" viewBox="0 0 24 24" style="stroke-width: 3;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
-      <button class="dock-btn" id="btn-history" title="History">
+      <button class="dock-btn" onclick="openHistorySheet()" title="History">
         <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path></svg>
       </button>
-      <button class="dock-btn" id="btn-themes" title="Theme Settings">
+      <button class="dock-btn" onclick="openThemesSheet()" title="Theme Settings">
         <svg class="icon" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
       </button>
     </div>
 
-    <!-- Modal Auto Counter -->
-    <div class="modal-overlay no-screen-tap" id="modal-auto">
-      <div class="modal-card">
-        <div class="modal-tabs">
-          <button class="modal-tab-btn active" id="tab-touch">Touch</button>
-          <button class="modal-tab-btn" id="tab-timer">Timer</button>
-        </div>
-        <div id="pane-touch">
-          <h3 class="modal-title">Setup Auto Counter</h3>
-          <p class="modal-desc">Set your auto count delay by tapping below 3 times with your desired speed</p>
-          <div class="touch-calibrate-ring" id="touch-calibrate-circle">0</div>
-        </div>
-        <div id="pane-timer" style="display: none;">
-          <h3 class="modal-title">Setup Auto Counter</h3>
-          <p class="modal-desc">Set your auto count delay in seconds</p>
-          <div class="stepper-row">
-            <button class="step-btn" id="step-minus-2">- -</button>
-            <button class="step-btn" id="step-minus">-</button>
-            <div style="min-width: 75px;">
-              <div class="step-number" id="step-number">1.0</div>
-              <span style="font-size: 11px; color: var(--text-muted);">seconds</span>
-            </div>
-            <button class="step-btn" id="step-plus">+</button>
-            <button class="step-btn" id="step-plus-2">++</button>
+  </div>
+
+  <!-- 1. Auto Modal -->
+  <div class="modal-overlay" id="modal-auto">
+    <div class="modal-card">
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tab-touch" onclick="switchAutoTab('touch')">Touch</button>
+        <button class="modal-tab-btn" id="tab-timer" onclick="switchAutoTab('timer')">Timer</button>
+      </div>
+      <div id="pane-touch">
+        <h3 class="modal-title">Setup Auto Counter</h3>
+        <p class="modal-desc">Set your auto count delay by tapping below 3 times with your desired speed</p>
+        <div class="touch-calibrate-ring" id="touch-calibrate-circle" onclick="calibrateAutoTap()">0</div>
+      </div>
+      <div id="pane-timer" style="display: none;">
+        <h3 class="modal-title">Setup Auto Counter</h3>
+        <p class="modal-desc">Set your auto count delay in seconds</p>
+        <div class="stepper-row">
+          <button class="step-btn" onclick="changeStep(-1.0)">- -</button>
+          <button class="step-btn" onclick="changeStep(-0.1)">-</button>
+          <div style="min-width: 75px;">
+            <div class="step-number" id="step-number">1.0</div>
+            <span style="font-size: 11px; color: var(--text-muted);">seconds</span>
           </div>
-          <div class="modal-btns">
-            <button class="modal-btn btn-cancel" id="btn-cancel-auto">Cancel</button>
-            <button class="modal-btn btn-start" id="btn-start-auto">Start</button>
-          </div>
+          <button class="step-btn" onclick="changeStep(0.1)">+</button>
+          <button class="step-btn" onclick="changeStep(1.0)">++</button>
+        </div>
+        <div class="modal-btns">
+          <button class="modal-btn btn-cancel" onclick="closeAutoModal()">Cancel</button>
+          <button class="modal-btn btn-start" onclick="startAutoCounter()">Start</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Presets Modal -->
-    <div class="modal-overlay no-screen-tap" id="modal-presets">
-      <div class="modal-card">
-        <h3 class="modal-title">Dhikr પસંદ કરો</h3>
-        <p class="modal-desc">ટાર્ગેટ સાથે તૈયાર લિસ્ટ</p>
-        <div id="presets-container" style="max-height: 250px; overflow-y: auto;"></div>
-        <div class="modal-btns" style="margin-top: 12px;">
-          <button class="modal-btn btn-cancel" id="btn-close-presets">બંધ કરો</button>
-        </div>
+  <!-- 2. Presets Modal -->
+  <div class="modal-overlay" id="modal-presets">
+    <div class="modal-card">
+      <h3 class="modal-title">Dhikr પસંદ કરો</h3>
+      <p class="modal-desc">ટાર્ગેટ સાથે તૈયાર લિસ્ટ</p>
+      <div id="presets-container" style="max-height: 250px; overflow-y: auto;"></div>
+      <div class="modal-btns" style="margin-top: 12px;">
+        <button class="modal-btn btn-cancel" onclick="closePresetsModal()">બંધ કરો</button>
       </div>
     </div>
+  </div>
 
-    <!-- Themes Sheet -->
-    <div class="sheet-overlay no-screen-tap" id="sheet-themes">
-      <div class="sheet-card">
-        <div class="sheet-header">
-          <button class="icon-btn" id="btn-close-themes" style="color: #fff;"><svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-          <h2 style="font-size: 18px; font-weight: 700;">Theme</h2>
-          <div style="width: 24px;"></div>
-        </div>
-        <div class="theme-grid" id="themes-grid-container"></div>
+  <!-- 3. Themes Sheet (With 15 Colors) -->
+  <div class="sheet-overlay" id="sheet-themes">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <button class="icon-btn" onclick="closeThemesSheet()" style="color: #fff;"><svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <h2 style="font-size: 18px; font-weight: 700;">Theme</h2>
+        <div style="width: 24px;"></div>
+      </div>
+      
+      <div class="theme-row-link" onclick="openFontsSheet()">
+        <span>Change Font</span>
+        <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: var(--text-muted);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+
+      <div class="theme-grid">
+        <div class="theme-box" style="background:#0d382e;" onclick="setTheme('theme-emerald')"><div class="theme-box-circle" style="border-color:#25e26b;-webkit-text-stroke-color:#25e26b;">30</div><div class="theme-box-notch" style="background:#25e26b;"></div></div>
+        <div class="theme-box" style="background:#382c14;" onclick="setTheme('theme-amber')"><div class="theme-box-circle" style="border-color:#ffb703;-webkit-text-stroke-color:#ffb703;">30</div><div class="theme-box-notch" style="background:#ffb703;"></div></div>
+        <div class="theme-box" style="background:#112d45;" onclick="setTheme('theme-ocean')"><div class="theme-box-circle" style="border-color:#00b4d8;-webkit-text-stroke-color:#00b4d8;">30</div><div class="theme-box-notch" style="background:#00b4d8;"></div></div>
+        <div class="theme-box" style="background:#3d141d;" onclick="setTheme('theme-ruby')"><div class="theme-box-circle" style="border-color:#ff3366;-webkit-text-stroke-color:#ff3366;">30</div><div class="theme-box-notch" style="background:#ff3366;"></div></div>
+        <div class="theme-box" style="background:#2c1442;" onclick="setTheme('theme-purple')"><div class="theme-box-circle" style="border-color:#c77dff;-webkit-text-stroke-color:#c77dff;">30</div><div class="theme-box-notch" style="background:#c77dff;"></div></div>
+        <div class="theme-box" style="background:#11381b;" onclick="setTheme('theme-forest')"><div class="theme-box-circle" style="border-color:#4ade80;-webkit-text-stroke-color:#4ade80;">30</div><div class="theme-box-notch" style="background:#4ade80;"></div></div>
+        <div class="theme-box" style="background:#0d383b;" onclick="setTheme('theme-cyanteal')"><div class="theme-box-circle" style="border-color:#00f5d4;-webkit-text-stroke-color:#00f5d4;">30</div><div class="theme-box-notch" style="background:#00f5d4;"></div></div>
+        <div class="theme-box" style="background:#3d1e2e;" onclick="setTheme('theme-rosegold')"><div class="theme-box-circle" style="border-color:#fb7185;-webkit-text-stroke-color:#fb7185;">30</div><div class="theme-box-notch" style="background:#fb7185;"></div></div>
+        <div class="theme-box" style="background:#14223b;" onclick="setTheme('theme-midnight')"><div class="theme-box-circle" style="border-color:#38bdf8;-webkit-text-stroke-color:#38bdf8;">30</div><div class="theme-box-notch" style="background:#38bdf8;"></div></div>
+        <div class="theme-box" style="background:#3d200e;" onclick="setTheme('theme-sunset')"><div class="theme-box-circle" style="border-color:#fb923c;-webkit-text-stroke-color:#fb923c;">30</div><div class="theme-box-notch" style="background:#fb923c;"></div></div>
+        <div class="theme-box" style="background:#0c3629;" onclick="setTheme('theme-mint')"><div class="theme-box-circle" style="border-color:#2dd4bf;-webkit-text-stroke-color:#2dd4bf;">30</div><div class="theme-box-notch" style="background:#2dd4bf;"></div></div>
+        <div class="theme-box" style="background:#3b2820;" onclick="setTheme('theme-coffee')"><div class="theme-box-circle" style="border-color:#d97706;-webkit-text-stroke-color:#d97706;">30</div><div class="theme-box-notch" style="background:#d97706;"></div></div>
+        <div class="theme-box" style="background:#3d1212;" onclick="setTheme('theme-crimson')"><div class="theme-box-circle" style="border-color:#ef4444;-webkit-text-stroke-color:#ef4444;">30</div><div class="theme-box-notch" style="background:#ef4444;"></div></div>
+        <div class="theme-box" style="background:#2c3614;" onclick="setTheme('theme-olive')"><div class="theme-box-circle" style="border-color:#a3e635;-webkit-text-stroke-color:#a3e635;">30</div><div class="theme-box-notch" style="background:#a3e635;"></div></div>
+        <div class="theme-box" style="background:#361642;" onclick="setTheme('theme-amethyst')"><div class="theme-box-circle" style="border-color:#e879f9;-webkit-text-stroke-color:#e879f9;">30</div><div class="theme-box-notch" style="background:#e879f9;"></div></div>
       </div>
     </div>
+  </div>
 
-    <!-- History Sheet -->
-    <div class="sheet-overlay no-screen-tap" id="sheet-history">
-      <div class="sheet-card">
-        <div class="sheet-header">
-          <button class="icon-btn" id="btn-close-history" style="color: #fff;"><svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-          <h2 style="font-size: 18px; font-weight: 700;">Dhikr Records</h2>
-          <button class="icon-btn" id="btn-clear-history" style="color: #ff6b6b; font-size: 13px; font-weight: 700;">Clear</button>
-        </div>
-        <div id="history-container" style="max-height: 55vh; overflow-y: auto;"></div>
+  <!-- 4. Font Picker Sheet -->
+  <div class="sheet-overlay" id="sheet-fonts">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <button class="icon-btn" onclick="closeFontsSheet()" style="color: #fff;"><svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <h2 style="font-size: 18px; font-weight: 700;">Select Font Style</h2>
+        <div style="width: 24px;"></div>
       </div>
+      <div class="font-option-card" onclick="setFont('system-ui, sans-serif')">Modern Minimalist</div>
+      <div class="font-option-card" onclick="setFont('monospace')">Digital Monospace</div>
+      <div class="font-option-card" onclick="setFont('cursive')">Handwritten Cursive</div>
+      <div class="font-option-card" onclick="setFont('Georgia, serif')">Classic Serif</div>
     </div>
+  </div>
 
+  <!-- 5. History Sheet -->
+  <div class="sheet-overlay" id="sheet-history">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <button class="icon-btn" onclick="closeHistorySheet()" style="color: #fff;"><svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <h2 style="font-size: 18px; font-weight: 700;">Dhikr Records</h2>
+        <button class="icon-btn" onclick="clearHistory()" style="color: #ff6b6b; font-size: 13px; font-weight: 700;">Clear</button>
+      </div>
+      <div id="history-container" style="max-height: 55vh; overflow-y: auto;"></div>
+    </div>
   </div>
 
   <script>
+    // Force clear any old service worker cache
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (let name of names) caches.delete(name);
+      });
+    }
+
     let count = 0;
     let target = 33;
     let autoDelay = 1.0;
@@ -255,7 +311,6 @@
     let isSoundOn = true;
     let isVibrationOn = true;
     let historyLogs = [];
-    let currentTheme = 'theme-emerald';
 
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playBeep(freq = 750) {
@@ -275,9 +330,7 @@
     }
 
     function doVibrate(ms = 25) {
-      if (isVibrationOn && navigator.vibrate) {
-        navigator.vibrate(ms);
-      }
+      if (isVibrationOn && navigator.vibrate) navigator.vibrate(ms);
     }
 
     function renderCount() {
@@ -326,11 +379,6 @@
       }
     }
 
-    document.getElementById('full-screen-touch-area').addEventListener('click', (e) => {
-      if (e.target.closest('.no-screen-tap')) return;
-      incrementCount();
-    });
-
     function resetStopwatch() {
       clearInterval(swTimer);
       swRunning = false;
@@ -339,8 +387,7 @@
       document.getElementById('sw-icon').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
     }
 
-    document.getElementById('sw-toggle').onclick = (e) => {
-      e.stopPropagation();
+    function toggleStopwatch() {
       if (swRunning) {
         clearInterval(swTimer);
         swRunning = false;
@@ -348,79 +395,61 @@
       } else {
         startTimerIfNotRunning();
       }
-    };
+    }
 
-    document.getElementById('sw-reset').onclick = (e) => {
-      e.stopPropagation();
-      resetStopwatch();
-    };
-
-    document.getElementById('btn-reset-counter').onclick = (e) => {
-      e.stopPropagation();
-      if (confirm("Badhu reset karvu che?")) {
+    function masterReset() {
+      if (confirm("બધું જ રીસેટ કરવું છે? (Counter અને Timer બંને 0 થઈ જશે)")) {
         logHistory();
         count = 0;
         renderCount();
         resetStopwatch();
       }
-    };
+    }
 
-    document.getElementById('btn-plus').onclick = (e) => { e.stopPropagation(); incrementCount(); };
-    document.getElementById('btn-minus').onclick = (e) => { e.stopPropagation(); decrementCount(); };
-
-    const btnSound = document.getElementById('btn-sound');
-    const btnVibrate = document.getElementById('btn-vibrate');
-    btnSound.onclick = (e) => {
-      e.stopPropagation();
+    function toggleSound() {
       isSoundOn = !isSoundOn;
-      btnSound.classList.toggle('active', isSoundOn);
-    };
-    btnVibrate.onclick = (e) => {
-      e.stopPropagation();
-      isVibrationOn = !isVibrationOn;
-      btnVibrate.classList.toggle('active', isVibrationOn);
-    };
+      document.getElementById('btn-sound').classList.toggle('active', isSoundOn);
+    }
 
-    const modalAuto = document.getElementById('modal-auto');
-    const btnAutoModal = document.getElementById('btn-auto-modal');
-    btnAutoModal.onclick = (e) => {
-      e.stopPropagation();
+    function toggleVibrate() {
+      isVibrationOn = !isVibrationOn;
+      document.getElementById('btn-vibrate').classList.toggle('active', isVibrationOn);
+    }
+
+    // Auto Counter Functions
+    function toggleAutoModal() {
       if (autoTimer) {
         clearInterval(autoTimer);
         autoTimer = null;
-        btnAutoModal.style.background = 'var(--accent-subtle)';
-        btnAutoModal.style.color = 'var(--accent-neon)';
+        document.getElementById('btn-auto-badge').style.background = 'var(--accent-subtle)';
+        document.getElementById('btn-auto-badge').style.color = 'var(--accent-neon)';
         return;
       }
-      modalAuto.classList.add('open');
-    };
-    document.getElementById('btn-cancel-auto').onclick = (e) => { e.stopPropagation(); modalAuto.classList.remove('open'); };
+      document.getElementById('modal-auto').style.display = 'flex';
+    }
 
-    const tabTouch = document.getElementById('tab-touch');
-    const tabTimer = document.getElementById('tab-timer');
-    const paneTouch = document.getElementById('pane-touch');
-    const paneTimer = document.getElementById('pane-timer');
-    tabTouch.onclick = (e) => {
-      e.stopPropagation();
-      tabTouch.classList.add('active');
-      tabTimer.classList.remove('active');
-      paneTouch.style.display = 'block';
-      paneTimer.style.display = 'none';
-    };
-    tabTimer.onclick = (e) => {
-      e.stopPropagation();
-      tabTimer.classList.add('active');
-      tabTouch.classList.remove('active');
-      paneTimer.style.display = 'block';
-      paneTouch.style.display = 'none';
-    };
+    function closeAutoModal() {
+      document.getElementById('modal-auto').style.display = 'none';
+    }
+
+    function switchAutoTab(tab) {
+      if (tab === 'touch') {
+        document.getElementById('tab-touch').classList.add('active');
+        document.getElementById('tab-timer').classList.remove('active');
+        document.getElementById('pane-touch').style.display = 'block';
+        document.getElementById('pane-timer').style.display = 'none';
+      } else {
+        document.getElementById('tab-timer').classList.add('active');
+        document.getElementById('tab-touch').classList.remove('active');
+        document.getElementById('pane-timer').style.display = 'block';
+        document.getElementById('pane-touch').style.display = 'none';
+      }
+    }
 
     let taps = [];
-    const touchRing = document.getElementById('touch-calibrate-circle');
-    touchRing.onclick = (e) => {
-      e.stopPropagation();
+    function calibrateAutoTap() {
       taps.push(Date.now());
-      touchRing.textContent = taps.length;
+      document.getElementById('touch-calibrate-circle').textContent = taps.length;
       if (taps.length === 3) {
         const d1 = taps[1] - taps[0];
         const d2 = taps[2] - taps[1];
@@ -428,29 +457,25 @@
         autoDelay = Math.max(0.2, parseFloat(avg.toFixed(1)));
         document.getElementById('step-number').textContent = autoDelay.toFixed(1);
         taps = [];
-        touchRing.textContent = '0';
-        tabTimer.click();
+        document.getElementById('touch-calibrate-circle').textContent = '0';
+        switchAutoTab('timer');
       }
-    };
+    }
 
     function changeStep(val) {
       autoDelay = Math.max(0.2, parseFloat((autoDelay + val).toFixed(1)));
       document.getElementById('step-number').textContent = autoDelay.toFixed(1);
     }
-    document.getElementById('step-minus').onclick = (e) => { e.stopPropagation(); changeStep(-0.1); };
-    document.getElementById('step-plus').onclick = (e) => { e.stopPropagation(); changeStep(0.1); };
-    document.getElementById('step-minus-2').onclick = (e) => { e.stopPropagation(); changeStep(-1.0); };
-    document.getElementById('step-plus-2').onclick = (e) => { e.stopPropagation(); changeStep(1.0); };
 
-    document.getElementById('btn-start-auto').onclick = (e) => {
-      e.stopPropagation();
-      modalAuto.classList.remove('open');
-      btnAutoModal.style.background = 'var(--accent-neon)';
-      btnAutoModal.style.color = '#000';
+    function startAutoCounter() {
+      closeAutoModal();
+      document.getElementById('btn-auto-badge').style.background = 'var(--accent-neon)';
+      document.getElementById('btn-auto-badge').style.color = '#000';
       startTimerIfNotRunning();
       autoTimer = setInterval(incrementCount, autoDelay * 1000);
-    };
+    }
 
+    // Presets
     const presets = [
       { name: "SubhanAllah", ar: "سُبْحَانَ ٱللَّٰهِ", target: 33 },
       { name: "Alhamdulillah", ar: "ٱلْحَمْدُ لِلَّٰهِ", target: 33 },
@@ -464,72 +489,58 @@
       const item = document.createElement('div');
       item.className = 'preset-item';
       item.innerHTML = `<div><div style="font-weight:700;">${p.name}</div><small style="color:var(--text-muted);">Target: ${p.target}</small></div><div class="preset-arabic">${p.ar}</div>`;
-      item.onclick = (e) => {
-        e.stopPropagation();
+      item.onclick = () => {
         document.getElementById('tasbih-title').textContent = p.name;
         target = p.target;
         count = 0;
         renderCount();
         resetStopwatch();
-        document.getElementById('modal-presets').classList.remove('open');
+        closePresetsModal();
       };
       presetsContainer.appendChild(item);
     });
 
-    document.getElementById('btn-open-presets').onclick = (e) => { e.stopPropagation(); document.getElementById('modal-presets').classList.add('open'); };
-    document.getElementById('btn-close-presets').onclick = (e) => { e.stopPropagation(); document.getElementById('modal-presets').classList.remove('open'); };
+    function openPresetsModal() { document.getElementById('modal-presets').style.display = 'flex'; }
+    function closePresetsModal() { document.getElementById('modal-presets').style.display = 'none'; }
 
-    document.getElementById('btn-edit-title').onclick = (e) => {
-      e.stopPropagation();
-      const val = prompt("Tasbih nu naam lakho:", document.getElementById('tasbih-title').textContent);
+    function openTitlePrompt() {
+      const val = prompt("Tasbih નું નામ લખો:", document.getElementById('tasbih-title').textContent);
       if (val && val.trim()) document.getElementById('tasbih-title').textContent = val.trim();
-    };
+    }
 
-    document.getElementById('btn-set-target').onclick = (e) => {
-      e.stopPropagation();
-      const val = prompt("Navo Target Limit set karo:", target);
+    function openTargetPrompt() {
+      const val = prompt("નવો Target Limit લખો:", target);
       if (val && parseInt(val) > 0) {
         target = parseInt(val);
         renderCount();
       }
-    };
-
-    const themes = [
-      { id: 'theme-emerald', color: '#25e26b', bg: '#0d382e' },
-      { id: 'theme-amber', color: '#ffb703', bg: '#382c14' },
-      { id: 'theme-ocean', color: '#00b4d8', bg: '#112d45' },
-      { id: 'theme-ruby', color: '#ff3366', bg: '#3d141d' },
-      { id: 'theme-purple', color: '#c77dff', bg: '#2c1442' },
-      { id: 'theme-forest', color: '#4ade80', bg: '#11381b' },
-      { id: 'theme-cyanteal', color: '#00f5d4', bg: '#0d383b' },
-      { id: 'theme-rosegold', color: '#fb7185', bg: '#3d1e2e' }
-    ];
-
-    function renderThemesGrid() {
-      const themesGrid = document.getElementById('themes-grid-container');
-      themesGrid.innerHTML = '';
-      themes.forEach((th) => {
-        const box = document.createElement('div');
-        box.className = 'theme-box';
-        box.style.background = th.bg;
-        box.innerHTML = `<div class="theme-box-circle" style="border-color: ${th.color}; -webkit-text-stroke-color: ${th.color}">30</div><div class="theme-box-notch" style="background: ${th.color};"></div>`;
-        box.onclick = (e) => {
-          e.stopPropagation();
-          currentTheme = th.id;
-          document.body.className = th.id;
-          document.getElementById('sheet-themes').classList.remove('open');
-        };
-        themesGrid.appendChild(box);
-      });
     }
 
-    document.getElementById('btn-themes').onclick = (e) => {
-      e.stopPropagation();
-      renderThemesGrid();
-      document.getElementById('sheet-themes').classList.add('open');
-    };
-    document.getElementById('btn-close-themes').onclick = (e) => { e.stopPropagation(); document.getElementById('sheet-themes').classList.remove('open'); };
+    // THEMES & FONTS FUNCTIONS
+    function openThemesSheet() {
+      document.getElementById('sheet-themes').style.display = 'flex';
+    }
+    function closeThemesSheet() {
+      document.getElementById('sheet-themes').style.display = 'none';
+    }
+    function setTheme(themeName) {
+      document.body.className = themeName;
+      closeThemesSheet();
+    }
 
+    function openFontsSheet() {
+      document.getElementById('sheet-fonts').style.display = 'flex';
+    }
+    function closeFontsSheet() {
+      document.getElementById('sheet-fonts').style.display = 'none';
+    }
+    function setFont(fontName) {
+      document.documentElement.style.setProperty('--counter-font', fontName);
+      closeFontsSheet();
+      closeThemesSheet();
+    }
+
+    // History
     function logHistory() {
       if (count <= 0) return;
       historyLogs.unshift({
@@ -539,12 +550,11 @@
       });
     }
 
-    document.getElementById('btn-history').onclick = (e) => {
-      e.stopPropagation();
+    function openHistorySheet() {
       const container = document.getElementById('history-container');
       container.innerHTML = '';
       if (historyLogs.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">Haji koi record nathi</div>';
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted);">હજુ સુધી કોઈ રેકોર્ડ નથી</div>';
       } else {
         historyLogs.forEach(h => {
           const row = document.createElement('div');
@@ -553,32 +563,21 @@
           container.appendChild(row);
         });
       }
-      document.getElementById('sheet-history').classList.add('open');
-    };
-    document.getElementById('btn-close-history').onclick = (e) => { e.stopPropagation(); document.getElementById('sheet-history').classList.remove('open'); };
-    document.getElementById('btn-clear-history').onclick = (e) => {
-      e.stopPropagation();
+      document.getElementById('sheet-history').style.display = 'flex';
+    }
+    function closeHistorySheet() { document.getElementById('sheet-history').style.display = 'none'; }
+    function clearHistory() {
       historyLogs = [];
-      document.getElementById('btn-history').click();
-    };
+      openHistorySheet();
+    }
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowUp' || e.key === 'VolumeUp') { e.preventDefault(); incrementCount(); }
       else if (e.key === 'ArrowDown' || e.key === 'VolumeDown') { e.preventDefault(); decrementCount(); }
     });
 
-    // PWA Service Worker Registration
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(() => console.log('Offline Ready (Service Worker Registered)'))
-          .catch((err) => console.log('SW registration failed:', err));
-      });
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
       renderCount();
-      renderThemesGrid();
     });
   </script>
 </body>
